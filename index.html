@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Đức Huy & Minh Trân Wedding</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat&display=swap" rel="stylesheet">
+
+<style>
+body {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  background: linear-gradient(135deg, #ffd1dc, #fff0f5);
+  color: #a64d79;
+  overflow-x: hidden;
+}
+
+/* HERO */
+.hero {
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.names {
+  font-family: 'Great Vibes', cursive;
+  font-size: 60px;
+  animation: fadeIn 2s ease;
+}
+
+.subtitle {
+  font-size: 18px;
+  margin-top: 10px;
+}
+
+/* IMAGE */
+.hero img {
+  width: 90%;
+  max-width: 600px;
+  border-radius: 20px;
+  margin-top: 20px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+}
+
+/* CARD */
+.card {
+  background: white;
+  margin: 30px auto;
+  padding: 30px;
+  border-radius: 20px;
+  width: 90%;
+  max-width: 500px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  animation: fadeUp 1.5s ease;
+}
+
+.guest {
+  font-size: 24px;
+  color: #cc3366;
+  margin-bottom: 20px;
+}
+
+/* INFO */
+.info {
+  margin: 10px 0;
+  font-size: 18px;
+}
+
+/* COUNTDOWN */
+.countdown {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.box {
+  background: #ffe4e1;
+  padding: 10px;
+  border-radius: 10px;
+  width: 70px;
+}
+
+.box span {
+  display: block;
+  font-weight: bold;
+}
+
+/* BUTTON */
+.btn {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 12px 25px;
+  background: #ff6699;
+  color: white;
+  border-radius: 30px;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  background: #e05588;
+}
+
+/* ANIMATION */
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+@keyframes fadeUp {
+  from {opacity: 0; transform: translateY(30px);}
+  to {opacity: 1; transform: translateY(0);}
+}
+</style>
+</head>
+
+<body>
+
+<div class="hero">
+  <div class="subtitle">Wedding Invitation</div>
+  <div class="names">Đức Huy & Minh Trân</div>
+
+  <!-- ẢNH GẤU + MÈO -->
+  <img src="hero.jpg" alt="wedding">
+
+</div>
+
+<div class="card">
+  <div class="guest">
+    Trân trọng kính mời: <span id="guestName">Bạn</span>
+  </div>
+
+  <div class="info">🕒 17:30pm - 09/05/2026</div>
+  <div class="info">📍 Pavillon Tân Sơn Nhất</div>
+
+  <div class="countdown">
+    <div class="box"><span id="d">0</span>Days</div>
+    <div class="box"><span id="h">0</span>Hours</div>
+    <div class="box"><span id="m">0</span>Min</div>
+    <div class="box"><span id="s">0</span>Sec</div>
+  </div>
+
+  <a class="btn" href="https://maps.google.com?q=Pavillon Tân Sơn Nhất" target="_blank">
+    📍 Xem bản đồ
+  </a>
+
+</div>
+
+<!-- NHẠC -->
+<audio autoplay loop>
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+// LẤY TÊN KHÁCH
+const params = new URLSearchParams(window.location.search);
+const ten = params.get("ten");
+
+if (ten) {
+  document.getElementById("guestName").innerText = decodeURIComponent(ten);
+}
+
+// COUNTDOWN
+const weddingDate = new Date("May 9, 2026 17:30:00").getTime();
+
+setInterval(() => {
+  const now = new Date().getTime();
+  const distance = weddingDate - now;
+
+  document.getElementById("d").innerText = Math.floor(distance / (1000 * 60 * 60 * 24));
+  document.getElementById("h").innerText = Math.floor((distance / (1000 * 60 * 60)) % 24);
+  document.getElementById("m").innerText = Math.floor((distance / (1000 * 60)) % 60);
+  document.getElementById("s").innerText = Math.floor((distance / 1000) % 60);
+}, 1000);
+
+</script>
+
+</body>
+</html>
