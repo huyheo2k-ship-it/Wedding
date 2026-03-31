@@ -4,179 +4,217 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Đức Huy & Minh Trân</title>
+<title>Wedding Đức Huy & Minh Trân</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Great+Vibes&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Great+Vibes&display=swap" rel="stylesheet">
 
 <style>
 body {
   margin: 0;
   font-family: 'Playfair Display', serif;
   background: #f8e6ea;
-  color: #5c3a3a;
-  scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
-/* SECTION */
+/* ===== COVER 2 CÁNH ===== */
+.cover {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  z-index: 999;
+}
+
+.door {
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(#f8e6ea, #fff);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 1.5s ease;
+}
+
+.left {
+  border-right: 1px solid #e0bfc4;
+}
+
+.right {
+  border-left: 1px solid #e0bfc4;
+}
+
+.cover.open .left {
+  transform: translateX(-100%);
+}
+
+.cover.open .right {
+  transform: translateX(100%);
+}
+
+/* BUTTON */
+.open-btn {
+  position: absolute;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 12px 30px;
+  border: 1px solid #b76e79;
+  border-radius: 30px;
+  background: white;
+  color: #b76e79;
+  cursor: pointer;
+}
+
+/* HERO */
 .section {
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
-  padding: 20px;
-}
-
-/* HERO */
-.hero {
-  background: linear-gradient(to bottom, #f8e6ea, #ffffff);
 }
 
 .names {
   font-family: 'Great Vibes', cursive;
-  font-size: 64px;
+  font-size: 60px;
   color: #b76e79;
 }
 
-.subtitle {
-  letter-spacing: 3px;
-  font-size: 14px;
-  color: #999;
-}
-
-/* IMAGE */
-.hero img {
+img {
   width: 80%;
   max-width: 500px;
   border-radius: 20px;
-  margin-top: 20px;
-  filter: brightness(95%);
 }
 
 /* CARD */
 .card {
   background: rgba(255,255,255,0.85);
-  backdrop-filter: blur(10px);
   padding: 40px;
   border-radius: 20px;
-  border: 1px solid rgba(183,110,121,0.3);
-  box-shadow: 0 10px 40px rgba(0,0,0,0.1);
-}
-
-/* TEXT */
-h1 {
-  font-size: 36px;
-  margin: 10px 0;
-}
-
-h2 {
-  font-size: 18px;
-  letter-spacing: 2px;
-  color: #b76e79;
-}
-
-/* COUNTDOWN */
-.countdown {
-  display: flex;
-  justify-content: center;
-  gap: 15px;
-  margin-top: 20px;
-}
-
-.box {
-  padding: 15px;
-  border: 1px solid #b76e79;
-  border-radius: 10px;
-  width: 80px;
-}
-
-/* BUTTON */
-.btn {
-  margin-top: 20px;
-  padding: 12px 30px;
-  border: 1px solid #b76e79;
-  color: #b76e79;
-  text-decoration: none;
-  border-radius: 30px;
-  transition: 0.3s;
-}
-
-.btn:hover {
-  background: #b76e79;
-  color: white;
+  backdrop-filter: blur(10px);
 }
 
 /* FADE */
 .fade {
   opacity: 0;
   transform: translateY(40px);
-  transition: 1.2s ease;
+  transition: 1s;
 }
 
 .fade.show {
   opacity: 1;
   transform: translateY(0);
 }
+
+/* COUNTDOWN */
+.countdown {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.box {
+  border: 1px solid #b76e79;
+  padding: 10px;
+  width: 70px;
+}
+
+/* PARTICLES */
+.particle {
+  position: fixed;
+  width: 8px;
+  height: 8px;
+  background: pink;
+  border-radius: 50%;
+  opacity: 0.7;
+  animation: float 10s linear infinite;
+}
+
+@keyframes float {
+  from { transform: translateY(100vh); }
+  to { transform: translateY(-10vh); }
+}
+
+/* SPARKLE */
+.sparkle {
+  position: fixed;
+  width: 3px;
+  height: 3px;
+  background: white;
+  animation: sparkle 2s infinite;
+}
+
+@keyframes sparkle {
+  0% {opacity: 0;}
+  50% {opacity: 1;}
+  100% {opacity: 0;}
+}
 </style>
 </head>
 
 <body>
 
-<!-- HERO -->
-<div class="section hero">
+<!-- COVER -->
+<div class="cover" id="cover">
+  <div class="door left">
+    <h2>Đức Huy</h2>
+  </div>
+  <div class="door right">
+    <h2>Minh Trân</h2>
+  </div>
+
+  <button class="open-btn" onclick="openInvite()">Mở thiệp</button>
+</div>
+
+<!-- CONTENT -->
+<div>
+
+<div class="section">
   <div>
-    <div class="subtitle">WEDDING INVITATION</div>
     <div class="names">Đức Huy & Minh Trân</div>
     <img src="hero.jpg">
   </div>
 </div>
 
-<!-- INVITE -->
 <div class="section fade">
   <div class="card">
-    <h2>TRÂN TRỌNG KÍNH MỜI</h2>
-    <h1 id="guestName">Quý Khách</h1>
+    <h3>Trân trọng kính mời</h3>
+    <h1 id="guestName">Quý khách</h1>
   </div>
 </div>
 
-<!-- INFO -->
 <div class="section fade">
   <div class="card">
-    <h2>THỜI GIAN & ĐỊA ĐIỂM</h2>
     <p>17:30 — 09.05.2026</p>
     <p>Pavillon Tân Sơn Nhất</p>
   </div>
 </div>
 
-<!-- COUNTDOWN -->
 <div class="section fade">
   <div class="card">
-    <h2>COUNTDOWN</h2>
     <div class="countdown">
-      <div class="box"><span id="d"></span><br>Days</div>
-      <div class="box"><span id="h"></span><br>Hours</div>
-      <div class="box"><span id="m"></span><br>Min</div>
-      <div class="box"><span id="s"></span><br>Sec</div>
+      <div class="box"><span id="d"></span>Days</div>
+      <div class="box"><span id="h"></span>Hours</div>
+      <div class="box"><span id="m"></span>Min</div>
+      <div class="box"><span id="s"></span>Sec</div>
     </div>
   </div>
 </div>
 
-<!-- MAP -->
-<div class="section fade">
-  <div class="card">
-    <h2>LOCATION</h2>
-    <a class="btn" href="https://maps.google.com?q=Pavillon Tân Sơn Nhất" target="_blank">
-      Xem bản đồ
-    </a>
-  </div>
 </div>
 
 <!-- MUSIC -->
-<audio autoplay loop>
+<audio id="music" loop>
   <source src="music.mp3" type="audio/mpeg">
 </audio>
 
 <script>
+// OPEN ANIMATION
+function openInvite() {
+  document.getElementById("cover").classList.add("open");
+  document.getElementById("music").play();
+}
+
 // NAME
 const params = new URLSearchParams(window.location.search);
 const ten = params.get("ten");
@@ -207,6 +245,24 @@ setInterval(() => {
   document.getElementById("m").innerText = Math.floor((d/(1000*60))%60);
   document.getElementById("s").innerText = Math.floor((d/1000)%60);
 }, 1000);
+
+// PARTICLES
+for (let i = 0; i < 20; i++) {
+  let p = document.createElement("div");
+  p.className = "particle";
+  p.style.left = Math.random() * 100 + "vw";
+  p.style.animationDuration = (5 + Math.random()*5) + "s";
+  document.body.appendChild(p);
+}
+
+// SPARKLE
+for (let i = 0; i < 15; i++) {
+  let s = document.createElement("div");
+  s.className = "sparkle";
+  s.style.left = Math.random() * 100 + "vw";
+  s.style.top = Math.random() * 100 + "vh";
+  document.body.appendChild(s);
+}
 </script>
 
 </body>
